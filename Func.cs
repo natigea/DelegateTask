@@ -8,14 +8,15 @@ namespace FuncTask3
 {
     internal class Func
     {
-        public static bool Even(int number)
+        public static bool IsEven(int number)
         {
             return number % 2 == 0;
         }
 
-        public static bool Positive(int number)
+        public static bool IsPositive(int number)
         {
             return number > 0;
         }
     }
 }
+
