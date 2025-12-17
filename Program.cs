@@ -1,25 +1,48 @@
-﻿namespace DelegateTask1
+﻿namespace FuncTask4
 {
     internal class Program
     {
         static void Main(string[] args)
         {
-            int x = 200;
-            int y = 40;
+            List<Telebe> telebeler = new List<Telebe>
+            {
+                new Telebe { Name = "Gulnare",    Price = 99, Age = 24},
+                new Telebe { Name = "Ferid",  Price = 92, Age = 22 },
+                new Telebe { Name = "Elbrus",  Price = 60, Age = 21 },
+                new Telebe { Name = "Emil H",   Price = 90, Age = 40 },
+                new Telebe { Name = "Nezrin",  Price = 45, Age = 29 },
+                new Telebe { Name = "Murad",  Price = 68, Age = 22},
+                new Telebe { Name = "Natig", Price = 95, Age = 18 }
+            };
 
-            MathOperation operation;
+            Predicate<Telebe> qiymeti70 = x => x.Price > 70;
+            Predicate<Telebe> yasi20 = x => x.Age < 20;
+            Predicate<Telebe> adiA = x => x.Name.StartsWith("A");
 
-            operation = MathOperations.Add;
-            Console.WriteLine($"Add:  { operation(x, y)}");
+            List<Telebe> Qiymet = telebeler.FindAll(qiymeti70);
+            List<Telebe> Yas = telebeler.FindAll(yasi20);
+            List<Telebe> Ad = telebeler.FindAll(adiA);
 
-            operation = MathOperations.Subtract;
-            Console.WriteLine($"Subtract:  {operation(x, y)}");
+            Func<Telebe, string> Telebe = x =>
+                $"Ad: {x.Name}, Qiymet: {x.Price}, Yas: {x.Age}";
 
-            operation = MathOperations.Multiply;
-            Console.WriteLine($"Multiply:  {operation(x, y)}");
+            Action<List<Telebe>> telebee = list =>
+            {
+                foreach (var x in list)
+                {
+                    Console.WriteLine(Telebe(x));
+                }
+                Console.WriteLine("");
+            };
 
-            operation = MathOperations.Divide;
-            Console.WriteLine($"Divide:  {operation(x, y)}");
+            Console.WriteLine($"Qiymeti 70-den yuxari olanlar:");
+            telebee(Qiymet);
+
+            Console.WriteLine("Yasi 20-den kicik olanlar:");
+            telebee(Yas);
+
+            Console.WriteLine("Adi 'A' ilee baslayanlar:");
+            telebee(Ad);
         }
     }
 }
