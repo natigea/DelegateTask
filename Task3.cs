@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FuncTask3
+namespace Task3
 {
     internal class Func
     {
@@ -19,4 +19,5 @@ namespace FuncTask3
         }
     }
 }
+
 
